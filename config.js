@@ -11,6 +11,10 @@ module.exports = {
 
             console: {
 
+            },
+
+            slack: {
+                slackWebHook: 'https://hooks.slack.com/services/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'
             }
         }
     }
