@@ -6,10 +6,10 @@
     <h1>Search Results:</h1>
 <!-- Start of search result. -->
     <ul>
-        {% for item in items %}
-        <li>ID {{ item.id }}, Name: {{ item.user }}</li>
+        {% for user in users %}
+        <li>ID {{ user.id }}, Name: {{ user.user }}</li>
         {% else %}
-        <li>No record found!</li>
+        <li>No user found!</li>
         {% endfor %}
     </ul> 
 <!-- End of search result. -->
