@@ -1,7 +1,7 @@
 class ConsoleLogger {
 
     log(message) {
-        console.log(`${new Date().toISOString()}`, message)
+        console.log(`${new Date().toString()}`, message)
     }
 }
 

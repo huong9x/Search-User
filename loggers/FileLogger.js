@@ -6,7 +6,7 @@ class FileLogger {
     }
 
     log(message) {
-        fs.appendFileSync(this.filePath, `${new Date().toISOString()}, message: ${JSON.stringify(message)}\n`);
+        fs.appendFileSync(this.filePath, `${new Date().toString()}, message: ${JSON.stringify(message)}\n`);
     }
 }
 
