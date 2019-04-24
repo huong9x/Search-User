@@ -1,15 +1,18 @@
-const Koa           = require('koa');
-const router        = require('./getModule/router');
-const createLogger  = require("./loggers");
-const config        = require("./config");
+const Koa            = require('koa');
 
-const app           = new Koa();
-const logger        = createLogger(config.log);
+const config         = require("./config");
 
-app.use(async (context, next) => {
-    context.logger = logger;
-    await next();
-});
+const userProvider   = require('./User/user.provider');
+const router         = require('./router');
+const loggerProvider = require("./loggers");
+const knex           = require('knex')(config.knex); 
+const njProvider     = require('./nunjucks.provider');
 
+const app            = new Koa();
+
+app.use(njProvider());
+app.use(loggerProvider.loggerMiddleware(config));
+app.use(userProvider(knex));
 app.use(router.routes());
+
 app.listen(8081);

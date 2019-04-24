@@ -3,7 +3,7 @@ const ConsoleLogger = require('./ConsoleLogger');
 const NullLogger    = require('./NullLogger');
 const SlackLogger   = require('./SlackLogger');
 
-module.exports = function createLogger(configuration) {
+exports.createLogger = function (configuration) {
     switch(configuration.using) {
         case "file": 
             return new FileLogger(configuration.adapters.file.path);
@@ -13,5 +13,13 @@ module.exports = function createLogger(configuration) {
             return new ConsoleLogger();
         default:
             return new NullLogger();
+    }
+}
+exports.loggerMiddleware = function(config) {
+    const logger = exports.createLogger(config);
+    
+    return async (context, next) => {
+        context.logger = logger;
+        await next();
     }
 }
