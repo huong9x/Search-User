@@ -1,0 +1,27 @@
+{% extends 'layout.njk.html' %}
+
+{% block title %}
+User: {{ user.getPresentationName() }}
+{% endblock %}
+
+{% block content %}
+<p>
+    <strong>
+        Name:
+    </strong> {{ user.getPresentationName() }}
+</p>
+
+<p>
+    <strong>
+        ID:
+    </strong> {{ user.getId() }}
+</p>
+
+<p>
+    <strong>
+        Original name:
+    </strong>
+    {{ user.getName() }}
+</p>
+    
+{% endblock %}

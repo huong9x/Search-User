@@ -9,7 +9,8 @@ class UserRepository {
         return results.map(result => new User(result.id, result.user));
     }
     async addUser(name) {
-        return await this.knex('users').insert({user: name});
+        let ids = await this.knex('users').insert({user: name});
+        return new User(ids[0], name);
     }
 }
 

@@ -14,12 +14,12 @@ router
         if (existUser.length == 0 ) {
             await next();
         } else {
-            context.render('index.html', { message: 'Your Username is Already Taken!' });
+            context.body = { message: 'Your Username is Already Taken!' };
         };       
 
     }, async(context) => {
-        context.render('index.html', {existUser: 1, message: 'Added new user.' });
-        return await context.userRepository.addUser(context.params.name);
+        let addedUser = await context.userRepository.addUser(context.params.name);
+        context.render('user.html', {user: addedUser});
     });
 
 module.exports   = router;

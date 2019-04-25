@@ -1,0 +1,31 @@
+{% extends 'layout.njk.html' %}
+
+{% block title %}
+USER | result
+{% endblock %}
+
+
+{% block content %}
+
+
+<h1>Result </h1>
+<div class="card">
+    {% if users %}  
+        <ul class="list-unstyled">                    
+            {% for user in users %}
+
+            <li>
+                <strong>{{user.getId()}}</strong> &nbsp; {{user.getPresentationName()}}
+            </li>
+            {% else %}
+            <li>
+                <small class="text-muted">No result</small>
+            </li>
+            {% endfor %}                    
+        </ul>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+

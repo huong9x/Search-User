@@ -1,6 +1,9 @@
 const nunjucks      = require('nunjucks');
 
 module.exports = () => {
+
+    nunjucks.configure('views', {autoescape: true});
+
     return async(context, next) => {
         context.nunjucks = nunjucks;
 
