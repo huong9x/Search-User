@@ -10,15 +10,15 @@ router
         context.render('index.html', { users });
     })
     .get('/add/user/:name', async (context, next) => {
-        let users    = await context.userRepository.getUser(context.params.name);
-        if (users.length == 0 ) {
+        let existUser     = await context.userRepository.getUser(context.params.name);
+        if (existUser.length == 0 ) {
             await next();
         } else {
-            context.render('add.user.html', { message: 'Your Username is Already Taken!' });
+            context.render('index.html', { message: 'Your Username is Already Taken!' });
         };       
 
     }, async(context) => {
-        context.render('add.user.html', { message: 'Successful registration!' });
+        context.render('index.html', {existUser: 1, message: 'Added new user.' });
         return await context.userRepository.addUser(context.params.name);
     });
 

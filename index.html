@@ -7,22 +7,33 @@
     <body>
         <div class="container-fluid">
             <h1>Result </h1>
-            <small class="text-muted">found {{users.length}} user</small>
+
+            <small class="text-muted">
+                    {% if users %}
+                    found {{users.length}} user
+                    {% elif existUser == 1 %}
+                        {{ message }}
+                    {% else %}
+                        {{message}}
+                    {% endif %}
+            </small>            
             
             <hr/>
             <div class="card">
-                <ul class="list-unstyled">
-                    {% for user in users %}
-    
-                    <li>
-                        <strong>{{user.getId()}}</strong> &nbsp; {{user.getPresentationName()}}
-                    </li>
-                    {% else %}
-                    <li>
-                        <small class="text-muted">No result</small>
-                    </li>
-                    {% endfor %}
-                </ul>
+                {% if users %}
+                    <ul class="list-unstyled">                    
+                        {% for user in users %}
+
+                        <li>
+                            <strong>{{user.getId()}}</strong> &nbsp; {{user.getPresentationName()}}
+                        </li>
+                        {% else %}
+                        <li>
+                            <small class="text-muted">No result</small>
+                        </li>
+                        {% endfor %}                    
+                    </ul>
+                {% endif %}
             </div>
         </div>
     </body>
