@@ -4,7 +4,7 @@ const config         = require("./config");
 
 const userProvider   = require('./User/user.provider');
 const router         = require('./router');
-const loggerProvider = require("./loggers");
+const loggerProvider = require('./loggers');
 const knex           = require('knex')(config.knex); 
 const njProvider     = require('./nunjucks.provider');
 
@@ -15,4 +15,4 @@ app.use(loggerProvider.loggerMiddleware(config));
 app.use(userProvider(knex));
 app.use(router.routes());
 
-app.listen(8081);
+app.listen(8088);
