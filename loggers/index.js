@@ -16,7 +16,7 @@ exports.createLogger = function (configuration) {
     }
 }
 exports.loggerMiddleware = function(config) {
-    const logger = exports.createLogger(config);
+    const logger = exports.createLogger(config.log);
     
     return async (context, next) => {
         context.logger = logger;
